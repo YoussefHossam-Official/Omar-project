@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artiva – Profile Data</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===========================
+       Page 2: Profile Data Form
+       =========================== */
+
+    /* Section card (grey rounded container) */
+    .form-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+
+    /* Date of birth: 3 dropdowns side by side */
+    .dob-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    /* Radio button group for Tax ID / Social Security */
+    .radio-group {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    /* Custom radio button styled to match design */
+    .radio-option input[type="radio"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .id-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Grid for citizenship + country side by side */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Phone number with country code prefix */
+    .phone-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .phone-prefix {
+      padding: 14px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      border-right: 1px solid #ddd;
+      white-space: nowrap;
+      background: transparent;
+    }
+
+    .phone-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 14px 14px;
+      font-size: 15px;
+      font-family: var(--font-body);
+      color: var(--navy);
+      outline: none;
+    }
+
+    /* National ID upload: takes up full height of right column */
+    .upload-box-tall {
+      height: 180px;
+    }
+
+    /* Bottom info note */
+    .verify-note {
+      font-size: 13px;
+      color: #888;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* Page heading */
+    .page-heading {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+    }
+
+    /* Label for form groups inside cards */
+    .field-label {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- Top navigation bar -->
+    <nav class="top-nav">
+      <button class="nav-back" onclick="window.location.href='start-selling.html'">
+        Profile Data
+      </button>
+      <!-- Artiva logo: replace SVG with <img src="artiva-logo.png"> if available -->
+      <div class="nav-logo">
+        <svg width="32" height="32" viewBox="0 0 50 50" fill="none">
+          <path d="M25 8 C20 8 12 14 12 22 C12 30 18 36 25 40 C32 36 38 30 38 22 C38 14 30 8 25 8Z" fill="var(--gold)" opacity="0.9"/>
+          <path d="M19 20 C19 16 22 13 25 13 C28 13 31 16 31 20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="25" cy="24" r="4" fill="white"/>
+        </svg>
+        Artiva
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="page-content">
+      <h1 class="page-heading">Please Fill Your Information</h1>
+
+      <!-- Section 1: Full name + date of birth -->
+      <div class="form-card">
+        <div class="field-label">Full Name</div>
+        <input type="text" class="input-field" id="full-name" placeholder="" aria-label="Full Name" />
+
+        <div style="margin-top: 18px;">
+          <div class="field-label">Date Of Birth</div>
+          <div class="dob-row">
+            <select class="select-field" id="day-select" aria-label="Day">
+              <option value="">Day</option>
+            </select>
+            <select class="select-field" aria-label="Month">
+              <option value="">Month</option>
+              <option>January</option><option>February</option><option>March</option>
+              <option>April</option><option>May</option><option>June</option>
+              <option>July</option><option>August</option><option>September</option>
+              <option>October</option><option>November</option><option>December</option>
+            </select>
+            <select class="select-field" id="year-select" aria-label="Year">
+              <option value="">Year</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Tax ID or Social Security Number toggle -->
+      <div class="form-card">
+        <div class="id-row">
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="id-type" value="tax" checked />
+              Tax ID
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="id-type" value="ssn" />
+              Social Security Number
+            </label>
+          </div>
+          <!-- Input for the selected ID number -->
+          <input type="text" class="input-field" id="id-input" placeholder="" aria-label="ID Number" style="max-width: 260px;" />
+        </div>
+      </div>
+
+      <!-- Section 3: Citizenship, country, phone, address, national ID upload -->
+      <div class="form-card">
+        <div class="two-col">
+          <div>
+            <div class="field-label">Citizenship</div>
+            <select class="select-field" id="citizenship-select" aria-label="Citizenship"></select>
+          </div>
+          <!-- Right: Country dropdown -->
+          <div>
+            <div class="field-label">Country</div>
+            <select class="select-field" id="country-select" aria-label="Country"></select>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top: 18px; align-items: start;">
+          <!-- Left column: phone + address -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div>
+              <div class="field-label">Phone Number</div>
+              <div class="phone-wrapper">
+                <span class="phone-prefix">EGP (+20)</span>
+                <input type="tel" class="phone-input" placeholder="" aria-label="Phone Number" />
+              </div>
+            </div>
+            <div>
+              <div class="field-label">Address</div>
+              <textarea class="input-field" rows="4" aria-label="Address"></textarea>
+            </div>
+          </div>
+
+          <!-- Right column: National ID card upload -->
+          <div>
+            <div class="field-label">National ID Card <span style="color:#bbb; font-size:12px;">(2 Photos)</span></div>
+            <!--
+              Upload box for National ID photos.
+              To handle real uploads, hook the onclick to an <input type="file" multiple accept="image/*">
+            -->
+            <div class="upload-box upload-box-tall" onclick="document.getElementById('id-upload').click()" role="button" tabindex="0">
+              <svg class="upload-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 28V16M22 16L16 22M22 16L28 22" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="6" y="6" width="32" height="32" rx="6" stroke-width="1.5"/>
+                <path d="M14 38H30" stroke-linecap="round"/>
+              </svg>
+              Select File Or Drag Here
+              <!-- Hidden file input for real upload functionality -->
+              <input type="file" id="id-upload" multiple accept="image/*" style="display:none" onchange="handleIDUpload(event)" />
+            </div>
+            <!-- Preview thumbnails appear here after upload -->
+            <div id="id-preview" style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verify button + note -->
+      <div style="text-align: center; margin-top: 12px;">
+        <button class="btn-primary" onclick="submitProfile()">Verify</button>
+        <div class="verify-note">(Data Verification Takes 6 - 12 Hours)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All JS logic lives in main.js -->
+  <script src="main.js"></script>
+</body>
+</html>

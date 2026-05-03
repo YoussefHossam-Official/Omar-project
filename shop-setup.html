@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artiva – Shop Set Up</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===========================
+       Page 3: Shop Setup Form
+       =========================== */
+
+    /* Section headings (bold, dark) */
+    .form-section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    /* Section spacing */
+    .form-section {
+      margin-bottom: 10px;
+    }
+
+    /* Cover photo + PFP side by side upload boxes */
+    .photo-uploads {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .photo-upload-item label {
+      font-size: 13px;
+      color: #888;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Square upload box */
+    .upload-box-square {
+      height: 160px;
+    }
+
+    /* Category pills grid */
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Logistics row: two inputs side by side */
+    .logistics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    /* Submit button centered at bottom */
+    .submit-area {
+      text-align: center;
+      padding: 28px 0 10px;
+    }
+
+    /* Decorative Artiva ghost logo top-right (matches Figma) */
+    .ghost-logo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 130px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper" style="position: relative; overflow: hidden;">
+
+    <!-- Ghost logo watermark (decorative, top right) -->
+    <svg class="ghost-logo" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10 C28 10 12 28 12 50 L12 110 L25 100 L38 110 L50 100 L62 110 L75 100 L88 110 L88 50 C88 28 72 10 50 10Z" fill="var(--navy)"/>
+      <circle cx="36" cy="52" r="8" fill="white"/>
+      <circle cx="64" cy="52" r="8" fill="white"/>
+      <circle cx="38" cy="50" r="3" fill="var(--navy)"/>
+      <circle cx="66" cy="50" r="3" fill="var(--navy)"/>
+    </svg>
+
+    <!-- Top navigation bar -->
+    <nav class="top-nav">
+      <button class="nav-back" onclick="window.location.href='profile-data.html'">
+        Shop Set Up
+      </button>
+      <!-- Replace SVG with <img src="artiva-logo.png"> if logo file is available -->
+      <div class="nav-logo">
+        <svg width="32" height="32" viewBox="0 0 50 50" fill="none">
+          <path d="M25 8 C20 8 12 14 12 22 C12 30 18 36 25 40 C32 36 38 30 38 22 C38 14 30 8 25 8Z" fill="var(--gold)" opacity="0.9"/>
+          <path d="M19 20 C19 16 22 13 25 13 C28 13 31 16 31 20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="25" cy="24" r="4" fill="white"/>
+        </svg>
+        Artiva
+      </div>
+    </nav>
+
+    <!-- Main form content -->
+    <div class="page-content">
+
+      <!-- Section: Cover Photo & PFP upload -->
+      <div class="form-section">
+        <div class="form-section-title">Cover Photo &amp; PFP</div>
+        <div class="photo-uploads">
+          <div class="photo-upload-item">
+            <label>Cover Photo</label>
+            <!--
+              Cover photo upload area.
+              Clicking opens file picker. Replace with your own upload handler.
+            -->
+            <div class="upload-box upload-box-square" onclick="triggerUpload('cover-input')" role="button" tabindex="0">
+              <svg class="upload-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 28V16M22 16L16 22M22 16L28 22" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="6" y="6" width="32" height="32" rx="6"/>
+                <path d="M14 38H30" stroke-linecap="round"/>
+              </svg>
+              Select File Or Drag Here
+              <input type="file" id="cover-input" accept="image/*" style="display:none" onchange="previewImage(event, 'cover-preview')" />
+            </div>
+            <!-- Preview shows after image is selected -->
+            <img id="cover-preview" src="" alt="" style="display:none; margin-top:8px; width:100%; height:100px; object-fit:cover; border-radius:var(--radius-md);" />
+          </div>
+
+          <div class="photo-upload-item">
+            <label>PFP</label>
+            <!--
+              Profile photo upload. Same pattern as cover photo.
+            -->
+            <div class="upload-box upload-box-square" onclick="triggerUpload('pfp-input')" role="button" tabindex="0">
+              <svg class="upload-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 28V16M22 16L16 22M22 16L28 22" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="6" y="6" width="32" height="32" rx="6"/>
+                <path d="M14 38H30" stroke-linecap="round"/>
+              </svg>
+              Select File Or Drag Here
+              <input type="file" id="pfp-input" accept="image/*" style="display:none" onchange="previewImage(event, 'pfp-preview')" />
+            </div>
+            <img id="pfp-preview" src="" alt="" style="display:none; margin-top:8px; width:80px; height:80px; object-fit:cover; border-radius:50%;" />
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Section: Shop Name -->
+      <div class="form-section">
+        <div class="form-section-title">
+          Shop Name <span style="font-size:16px; font-weight:400;">(Commercial Name)</span>
+        </div>
+        <div class="field-label">(Max 30 Characters)</div>
+        <input
+          type="text"
+          class="input-field"
+          id="shop-name"
+          maxlength="30"
+          aria-label="Shop Name"
+          oninput="updateCharCount()"
+        />
+        <!-- Character counter -->
+        <div style="text-align:right; font-size:12px; color:#aaa; margin-top:4px;">
+          <span id="char-count">0</span>/30
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Section: Shop Bio -->
+      <div class="form-section">
+        <div class="form-section-title">Shop Bio</div>
+        <textarea class="input-field" rows="4" aria-label="Shop Bio" placeholder="Tell buyers about your shop..."></textarea>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Section: Category selection (multi-select pills) -->
+      <div class="form-section">
+        <div class="form-section-title">
+          Category <span style="font-size:14px; font-weight:400; color:#888;">What Do You Sell ?</span>
+        </div>
+        <!-- Each pill is toggleable; JS handles active state -->
+        <div class="category-grid" id="category-grid">
+          <button class="tag-pill" onclick="toggleCategory(this)">Bags</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Home Decor</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Candles &amp; Scents</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Textile &amp; Crochet</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Natural Skincare</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Gift Boxes</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Recycled Crafts</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">For Kids</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Pottery</button>
+          <button class="tag-pill" onclick="toggleCategory(this)">Custom Orders</button>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Section: Contact Phone Number -->
+      <div class="form-section">
+        <div class="form-section-title">Contact Phone Number</div>
+        <input type="tel" class="input-field" aria-label="Contact Phone Number" placeholder="" />
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Section: Logistics Info -->
+      <div class="form-section">
+        <div class="form-section-title">Logistics Info</div>
+        <div class="logistics-row">
+          <div>
+            <div class="field-label">Shipping From</div>
+            <input type="text" class="input-field" aria-label="Shipping From" placeholder="" />
+          </div>
+          <div>
+            <div class="field-label">Average Process Time</div>
+            <input type="text" class="input-field" aria-label="Average Process Time" placeholder="" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="submit-area">
+        <button class="btn-primary" onclick="submitShopSetup()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- All JS logic lives in main.js -->
+  <script src="main.js"></script>
+</body>
+</html>

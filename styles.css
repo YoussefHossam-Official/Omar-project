@@ -1,0 +1,284 @@
+/* ===========================
+   Artiva - Global Styles
+   Shared across all pages
+   =========================== */
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/* ===========================
+   CSS Variables (Design Tokens)
+   =========================== */
+:root {
+  --gold: rgb(212, 160, 23);          /* Primary brand color - buttons */
+  --gold-dark: #b8890f;               /* Darker gold for hover states */
+  --navy: rgb(33, 40, 66);            /* Primary text color */
+  --card-bg: rgb(240, 240, 240);      /* Card and input background */
+  --white: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.19); /* Black 19% opacity for dividers */
+  --border-width: 2px;                /* Stroke width for borders */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ===========================
+   Reset & Base
+   =========================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--navy);
+  background: #f5f5f0;
+  min-height: 100vh;
+}
+
+/* ===========================
+   Page wrapper - gold side borders
+   =========================== */
+.page-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--white);
+  min-height: 100vh;
+  border-left: 18px solid var(--gold);
+  border-right: 18px solid var(--gold);
+  position: relative;
+}
+
+/* ===========================
+   Top Navigation Bar
+   =========================== */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+}
+
+.nav-back::before {
+  content: '<';
+  font-size: 16px;
+}
+
+/* Artiva logo in nav */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  color: var(--navy);
+}
+
+.nav-logo img {
+  width: 32px;
+  height: 32px;
+}
+
+/* ===========================
+   Page Content Area
+   =========================== */
+.page-content {
+  padding: 36px 40px 60px;
+}
+
+/* ===========================
+   Shared: Input Fields
+   =========================== */
+.input-field {
+  width: 100%;
+  background: var(--card-bg);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--navy);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+.input-field::placeholder {
+  color: #aaa;
+}
+
+textarea.input-field {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Input label */
+.input-label {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Input group card (grey rounded section) */
+.input-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+/* ===========================
+   Shared: Dropdown (select)
+   =========================== */
+.select-field {
+  width: 100%;
+  background: var(--card-bg);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 13px 18px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--navy);
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+
+/* ===========================
+   Shared: Primary Button
+   =========================== */
+.btn-primary {
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background: var(--gold-dark);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* ===========================
+   Shared: Section Divider
+   =========================== */
+.section-divider {
+  border: none;
+  border-top: var(--border-width) solid var(--border-color);
+  margin: 28px 0;
+}
+
+/* ===========================
+   Shared: Upload Box
+   =========================== */
+.upload-box {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  color: #999;
+  font-size: 13px;
+  text-align: center;
+}
+
+.upload-box:hover {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+.upload-icon {
+  width: 44px;
+  height: 44px;
+  color: #aaa;
+}
+
+/* ===========================
+   Shared: Tag / Pill badges
+   =========================== */
+.tag-pill {
+  display: inline-block;
+  border: 1.5px solid var(--navy);
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  background: transparent;
+  color: var(--navy);
+  font-family: var(--font-body);
+}
+
+.tag-pill.selected,
+.tag-pill:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ===========================
+   Shared: Section Heading
+   =========================== */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+
+/* ===========================
+   Utility classes
+   =========================== */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.center { text-align: center; }
+.bold { font-weight: 700; }
+.text-sm { font-size: 13px; }
+.text-muted { color: #888; }
+.w-full { width: 100%; }

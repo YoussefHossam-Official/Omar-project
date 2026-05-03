@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artiva – OmarCrafts</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===========================
+       Page 6: Public Seller Profile
+       Shows shop cover, products, courses
+       =========================== */
+
+    /* Full-width cover banner */
+    .shop-cover {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      /*
+        COVER IMAGE: Replace this src with the shop's actual cover photo.
+        Using Unsplash autumn leaves image as placeholder.
+        URL: https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1000&h=400&fit=crop
+      */
+    }
+
+    /* Profile header: avatar + name + bio + buttons */
+    .profile-header {
+      padding: 0 36px 24px;
+      position: relative;
+    }
+
+    /* Circular avatar overlapping the cover photo */
+    .shop-avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 4px solid var(--white);
+      object-fit: cover;
+      margin-top: -65px; /* overlap cover by half */
+      position: relative;
+      z-index: 1;
+      /*
+        PFP IMAGE: Replace src with shop's actual profile photo.
+        URL: https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=200&h=200&fit=crop
+      */
+    }
+
+    /* Row: name + bio on left, buttons on right */
+    .profile-info-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .shop-name {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .shop-bio {
+      font-size: 14px;
+      color: var(--navy);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    /* Contact / Follow buttons */
+    .profile-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 11px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-dark);
+    }
+
+    /* Divider line under profile header */
+    .profile-divider {
+      border: none;
+      border-top: var(--border-width) solid var(--border-color);
+      margin: 0 0 28px;
+    }
+
+    /* Products / Courses section */
+    .shop-section {
+      padding: 0 36px 32px;
+    }
+
+    .shop-section-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+
+    /* Product cards grid: 3 per row */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* Individual product card */
+    .product-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--white);
+      position: relative;
+    }
+
+    /* Product image top section */
+    .product-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      /*
+        PRODUCT IMAGES: Replace each src below with the actual product photo.
+        Placeholder images from Unsplash are used.
+      */
+    }
+
+    /* Heart / wishlist button on image */
+    .wishlist-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      color: #ccc;
+      transition: color 0.2s;
+    }
+
+    .wishlist-btn:hover,
+    .wishlist-btn.liked {
+      color: #e55;
+    }
+
+    /* Card info section below image */
+    .product-card-info {
+      padding: 12px 14px;
+    }
+
+    /* Product name + rating row */
+    .product-name-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .product-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--navy);
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Category tag pills under product name */
+    .product-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .product-tag {
+      font-size: 12px;
+      border: 1px solid #ccc;
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+      color: #555;
+    }
+
+    /* Price + Add to Cart row */
+    .product-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .price-currency {
+      font-size: 11px;
+      font-weight: 500;
+      color: #888;
+      margin-left: 1px;
+    }
+
+    .add-to-cart-btn {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--gold-dark);
+    }
+
+    /* Courses grid: only 1 visible card in Figma */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .course-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      display: block;
+      /*
+        COURSE IMAGE: Replace src with actual course thumbnail.
+        Unsplash number tiles image used as placeholder.
+      */
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- Top navigation bar -->
+    <nav class="top-nav">
+      <button class="nav-back" onclick="window.location.href='my-shop.html'">
+        OmarCrafts
+      </button>
+      <!-- Replace SVG with <img src="artiva-logo.png"> if logo file is available -->
+      <div class="nav-logo">
+        <svg width="32" height="32" viewBox="0 0 50 50" fill="none">
+          <path d="M25 8 C20 8 12 14 12 22 C12 30 18 36 25 40 C32 36 38 30 38 22 C38 14 30 8 25 8Z" fill="var(--gold)" opacity="0.9"/>
+          <path d="M19 20 C19 16 22 13 25 13 C28 13 31 16 31 20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="25" cy="24" r="4" fill="white"/>
+        </svg>
+        Artiva
+      </div>
+    </nav>
+
+    <!--
+      COVER PHOTO: Replace src with actual shop cover image.
+      Placeholder: Unsplash autumn/leaves photo.
+    -->
+    <img
+      class="shop-cover"
+      src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1000&h=400&fit=crop"
+      alt="OmarCrafts cover photo"
+    />
+
+    <!-- Profile header -->
+    <div class="profile-header">
+      <!--
+        PFP: Replace src with actual shop profile photo.
+        Placeholder: Unsplash woodworking/craft tools photo.
+      -->
+      <img
+        class="shop-avatar"
+        src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=200&h=200&fit=crop"
+        alt="OmarCrafts profile photo"
+      />
+
+      <div class="profile-info-row">
+        <div>
+          <div class="shop-name">OmarCrafts</div>
+          <div class="shop-bio">
+            Transforming raw materials into pieces of art. Every item in my shop is handcrafted with love
+            and care, designed to bring a touch of handmade magic into your daily life.
+          </div>
+        </div>
+        <!-- Action buttons: Contact + Follow -->
+        <div class="profile-actions">
+          <button class="btn-gold">Contact</button>
+          <button class="btn-gold" id="follow-btn" onclick="toggleFollow()">Follow</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="profile-divider" />
+
+    <!-- Products Section -->
+    <div class="shop-section">
+      <div class="shop-section-title">Products</div>
+
+      <div class="product-grid">
+
+        <!-- Product Card 1: Toy Bundle -->
+        <div class="product-card">
+          <!--
+            PRODUCT IMAGE 1: Replace src with actual product photo.
+            Unsplash wooden animal toys used as placeholder.
+          -->
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop"
+            alt="Toy Bundle product photo"
+          />
+          <div class="product-card-info">
+            <div class="product-name-row">
+              <div class="product-name">Toy Bundle</div>
+              <div class="product-rating">★ 4.97</div>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">For Kids</span>
+            </div>
+            <div class="product-price-row">
+              <div class="product-price">260<span class="price-currency">EGP</span></div>
+              <button class="add-to-cart-btn" onclick="addToCart('Toy Bundle', 260)">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 2: Carved Small Bear -->
+        <div class="product-card" style="position:relative;">
+          <!-- Wishlist heart button -->
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">♡</button>
+          <!--
+            PRODUCT IMAGE 2: Replace src with actual product photo.
+            Unsplash ceramic/clay bear sculpture used as placeholder.
+          -->
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop"
+            alt="Carved Small Bear product photo"
+          />
+          <div class="product-card-info">
+            <div class="product-name-row">
+              <div class="product-name">Carved Small Bear</div>
+              <div class="product-rating">★ 4.85</div>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">For Kids</span>
+              <span class="product-tag">Home Decor</span>
+            </div>
+            <div class="product-price-row">
+              <div class="product-price">150<span class="price-currency">EGP</span></div>
+              <button class="add-to-cart-btn" onclick="addToCart('Carved Small Bear', 150)">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 3: Can Pencil Holder -->
+        <div class="product-card">
+          <!--
+            PRODUCT IMAGE 3: Replace src with actual product photo.
+            Unsplash pastel vases/holders used as placeholder.
+          -->
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1612831197813-370e16ded0a1?w=400&h=300&fit=crop"
+            alt="Can Pencil Holder product photo"
+          />
+          <div class="product-card-info">
+            <div class="product-name-row">
+              <div class="product-name">Can Pencil Holder</div>
+              <div class="product-rating">★ 4.63</div>
+            </div>
+            <div class="product-tags">
+              <span class="product-tag">Home Decor</span>
+              <span class="product-tag">Recycled Crafts</span>
+            </div>
+            <div class="product-price-row">
+              <div class="product-price">75<span class="price-currency">EGP</span></div>
+              <button class="add-to-cart-btn" onclick="addToCart('Can Pencil Holder', 75)">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Courses Section -->
+    <div class="shop-section">
+      <div class="shop-section-title">Courses</div>
+      <div class="courses-grid">
+        <!--
+          COURSE IMAGE: Replace src with actual course thumbnail photo.
+          Unsplash number/calendar tiles used as placeholder.
+        -->
+        <img
+          class="course-card-img"
+          src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=250&fit=crop"
+          alt="Course thumbnail"
+        />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- All JS logic lives in main.js -->
+  <script src="main.js"></script>
+</body>
+</html>
