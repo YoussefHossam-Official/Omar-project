@@ -1,0 +1,115 @@
+/* ==========================================================
+   profile-data.css
+   Styles specific to the Profile Data form page.
+   ========================================================== */
+
+/* Grey rounded card containing form fields */
+.form-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+
+/* Date of birth: Day / Month / Year dropdowns side by side */
+.dob-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Radio buttons row for Tax ID vs Social Security */
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex: 1;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.radio-option input[type="radio"] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+/* Row that holds radio buttons + ID number input */
+.id-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Citizenship and Country side by side */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Phone input: country code prefix + number field */
+.phone-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.phone-prefix {
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  border-right: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.phone-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 14px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--navy);
+  outline: none;
+}
+
+/* National ID upload box height */
+.upload-box-tall {
+  height: 180px;
+}
+
+/* Helper text labels inside cards */
+.field-label {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+/* Page main heading */
+.page-heading {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+
+/* Verification note below the button */
+.verify-note {
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  margin-top: 8px;
+}

@@ -1,0 +1,120 @@
+/* ==========================================================
+   add-product.css
+   Styles specific to the Add Product form page.
+   ========================================================== */
+
+/* Two-column layout: photo upload left / fields right */
+.product-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
+  padding: 36px 40px 60px;
+}
+
+/* Square product image upload area */
+.product-image-upload {
+  height: 340px;
+  border-radius: var(--radius-lg);
+}
+
+/* Camera placeholder icon */
+.camera-icon {
+  width: 56px;
+  height: 56px;
+  color: #aaa;
+}
+
+.upload-hint {
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* Right-side fields stack */
+.product-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Bold label above each field */
+.field-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+/* Price input wrapper: holds input + EGP suffix */
+.price-wrapper {
+  position: relative;
+  max-width: 260px;
+}
+
+.price-input {
+  width: 100%;
+  background: var(--card-bg);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 13px 50px 13px 18px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--navy);
+  outline: none;
+}
+
+.price-input:focus {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+/* EGP label inside price field */
+.price-suffix {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: #aaa;
+  pointer-events: none;
+}
+
+/* Description textarea */
+.desc-textarea {
+  min-height: 130px;
+}
+
+/* Dimensions L / W / H in a 3-column row */
+.dimensions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* Single dimension input with placeholder letter aligned right */
+.dim-input {
+  background: var(--card-bg);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 13px 14px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--navy);
+  outline: none;
+  text-align: right;
+  width: 100%;
+}
+
+.dim-input:focus {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+/* Material + Weight side by side */
+.mat-weight-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Estimated Process Time field width cap */
+.process-input {
+  max-width: 320px;
+}

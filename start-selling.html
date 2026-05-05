@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artiva – Start Selling</title>
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="style/styles.css" />
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="style/start-selling.css" />
+</head>
+<body>
+  <div class="split-layout">
+
+    <!-- Left Content Panel -->
+    <div class="split-left">
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 6px;">
+          <h1 class="page-title">Start Selling<br>Today !</h1>
+
+          <!-- Artiva logo + Home label -->
+          <!-- Replace SVG with: <img src="assets/artiva-logo.png" class="logo-icon" alt="Artiva" /> -->
+          <div style="text-align:center;">
+            <svg class="logo-icon" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M25 8 C20 8 12 14 12 22 C12 30 18 36 25 40 C32 36 38 30 38 22 C38 14 30 8 25 8Z" fill="var(--gold)" opacity="0.9"/>
+              <path d="M19 20 C19 16 22 13 25 13 C28 13 31 16 31 20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="25" cy="24" r="4" fill="white"/>
+            </svg>
+            <div class="logo-label">Home</div>
+          </div>
+        </div>
+
+        <p class="subtitle">After easy 4 steps</p>
+
+        <!-- 4-step progress list -->
+        <div class="steps-list">
+
+          <!-- Step 1: completed -->
+          <div class="step-item">
+            <div class="step-connector">
+              <div class="step-circle done">✓</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-text">
+              <div class="step-heading">Step 1 : Create An <span>Account</span><span class="step-arrow">➤</span></div>
+              <div class="step-sub">Sign Up with Google in seconds</div>
+            </div>
+          </div>
+
+          <!-- Step 2: pending -->
+          <div class="step-item">
+            <div class="step-connector">
+              <div class="step-circle"></div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-text">
+              <div class="step-heading">Step 2 : Fill Your <span>Profile Data</span><span class="step-arrow">➤</span></div>
+              <div class="step-sub">Phone Number, Address etc ...</div>
+            </div>
+          </div>
+
+          <!-- Step 3: pending -->
+          <div class="step-item">
+            <div class="step-connector">
+              <div class="step-circle"></div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-text">
+              <div class="step-heading">Step 3 : Set Up <span>Your Shop</span><span class="step-arrow">➤</span></div>
+              <div class="step-sub">Tell Buyers Who you are & What do you sell</div>
+            </div>
+          </div>
+
+          <!-- Step 4: last step, no line below -->
+          <div class="step-item">
+            <div class="step-connector">
+              <div class="step-circle"></div>
+            </div>
+            <div class="step-text">
+              <div class="step-heading">Step 4 : You're Done !</div>
+              <div class="step-sub">Watch your business grow with every order</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Terms checkbox + CTA -->
+      <div class="footer-area">
+        <div class="terms-row">
+          <div class="terms-check">✓</div>
+          <span>I Have Read and Agreed to the <span class="terms-link">Terms</span></span>
+        </div>
+        <button class="btn-primary" onclick="goToProfileData()">I'm Ready !</button>
+      </div>
+
+    </div>
+
+    <!-- Right Decorative Pattern Panel -->
+    <div class="split-right">
+      <div class="pattern-overlay"></div>
+    </div>
+
+  </div>
+
+  <!-- Shared JS first, then page-specific JS -->
+  <script src="js/main.js"></script>
+  <script src="js/start-selling.js"></script>
+</body>
+</html>

@@ -4,136 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Artiva – Add Product</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* ===========================
-       Page 5: Add Product Form
-       Layout: left image / right fields
-       =========================== */
-
-    /* Two-column layout matching Figma */
-    .product-layout {
-      display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 40px;
-      padding: 36px 40px 60px;
-    }
-
-    /* Left: photo upload square */
-    .product-image-upload {
-      height: 340px;
-      border-radius: var(--radius-lg);
-    }
-
-    .camera-icon {
-      width: 56px;
-      height: 56px;
-      color: #aaa;
-    }
-
-    .upload-hint {
-      font-size: 13px;
-      color: #aaa;
-    }
-
-    /* Right side fields */
-    .product-fields {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .field-label {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    /* Price field: input with EGP suffix inside */
-    .price-wrapper {
-      position: relative;
-      max-width: 260px;
-    }
-
-    .price-input {
-      width: 100%;
-      background: var(--card-bg);
-      border: none;
-      border-radius: var(--radius-md);
-      padding: 13px 50px 13px 18px;
-      font-size: 15px;
-      font-family: var(--font-body);
-      color: var(--navy);
-      outline: none;
-    }
-
-    .price-input:focus {
-      box-shadow: 0 0 0 2px var(--gold);
-    }
-
-    .price-suffix {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 13px;
-      color: #aaa;
-      pointer-events: none;
-    }
-
-    /* Description textarea */
-    .desc-textarea {
-      min-height: 130px;
-    }
-
-    /* Dimensions: 3 inputs (L, W, H) side by side */
-    .dimensions-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-    }
-
-    /* Dimension input with placeholder letter (L, W, H) */
-    .dim-input {
-      background: var(--card-bg);
-      border: none;
-      border-radius: var(--radius-md);
-      padding: 13px 14px;
-      font-size: 15px;
-      font-family: var(--font-body);
-      color: var(--navy);
-      outline: none;
-      text-align: right;
-      width: 100%;
-    }
-
-    .dim-input:focus {
-      box-shadow: 0 0 0 2px var(--gold);
-    }
-
-    /* Material + Weight in same row */
-    .mat-weight-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    /* Process time field shorter */
-    .process-input {
-      max-width: 320px;
-    }
-  </style>
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="style/styles.css" />
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="style/add-product.css" />
 </head>
 <body>
   <div class="page-wrapper">
 
     <!-- Top navigation bar -->
     <nav class="top-nav">
-      <button class="nav-back" onclick="window.location.href='my-shop.html'">
-        Add Product
-      </button>
-      <!-- Replace SVG with <img src="artiva-logo.png"> if logo file is available -->
+      <button class="nav-back" onclick="window.location.href='my-shop.html'">Add Product</button>
+      <!-- Replace SVG with: <img src="assets/artiva-logo.png" width="32" alt="Artiva" /> -->
       <div class="nav-logo">
         <svg width="32" height="32" viewBox="0 0 50 50" fill="none">
           <path d="M25 8 C20 8 12 14 12 22 C12 30 18 36 25 40 C32 36 38 30 38 22 C38 14 30 8 25 8Z" fill="var(--gold)" opacity="0.9"/>
@@ -144,24 +26,22 @@
       </div>
     </nav>
 
-    <!-- Product form: image left, fields right -->
+    <!-- Two-column layout: image upload left / fields right -->
     <div class="product-layout">
 
-      <!-- Left: product photo upload (max 30 photos) -->
+      <!-- Left: product photo upload -->
       <div>
         <!--
-          Product image upload area.
-          Clicking shows the file picker for product photos.
-          Shows a camera icon placeholder until an image is selected.
+          Clicking the upload box opens the file picker.
+          previewProductImage() in add-product.js handles the preview.
+          Max 30 product photos allowed.
         -->
-        <div
-          class="upload-box product-image-upload"
-          onclick="document.getElementById('product-img-input').click()"
-          role="button"
-          tabindex="0"
-        >
-          <!-- Camera icon: shown before any photo is added -->
-          <svg class="camera-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" id="camera-placeholder">
+        <div class="upload-box product-image-upload"
+             onclick="document.getElementById('product-img-input').click()"
+             role="button" tabindex="0">
+          <!-- Camera icon: hidden after first image is selected -->
+          <svg class="camera-icon" viewBox="0 0 56 56" fill="none"
+               stroke="currentColor" stroke-width="1.5" id="camera-placeholder">
             <rect x="6" y="16" width="44" height="32" rx="6"/>
             <circle cx="28" cy="32" r="10"/>
             <circle cx="28" cy="32" r="5" fill="currentColor" stroke="none" opacity="0.3"/>
@@ -169,60 +49,54 @@
             <circle cx="44" cy="22" r="2" fill="currentColor" stroke="none"/>
           </svg>
           <div class="upload-hint">(Max 30)</div>
-
-          <!-- Hidden file input; multiple photos allowed -->
-          <input
-            type="file"
-            id="product-img-input"
-            accept="image/*"
-            multiple
-            style="display:none"
-            onchange="previewProductImage(event)"
-          />
+          <input type="file" id="product-img-input" accept="image/*" multiple
+                 style="display:none" onchange="previewProductImage(event)" />
         </div>
-
-        <!-- Thumbnail strip shown after images are selected -->
+        <!-- Thumbnail strip injected here by add-product.js -->
         <div id="img-thumbnails" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;"></div>
       </div>
 
-      <!-- Right: product details fields -->
+      <!-- Right: product detail fields -->
       <div class="product-fields">
 
-        <!-- Price field -->
+        <!-- Price in EGP -->
         <div>
           <div class="field-label">Price</div>
           <div class="price-wrapper">
-            <input type="number" class="price-input" id="price" placeholder="" aria-label="Price in EGP" min="0" />
+            <input type="number" class="price-input" id="price"
+                   placeholder="" aria-label="Price in EGP" min="0" />
             <span class="price-suffix">EGP</span>
           </div>
         </div>
 
-        <!-- Description textarea -->
+        <!-- Product description -->
         <div>
           <div class="field-label">Describtion</div>
-          <textarea class="input-field desc-textarea" aria-label="Product description" placeholder="Describe your product..."></textarea>
+          <textarea class="input-field desc-textarea"
+                    aria-label="Product description"
+                    placeholder="Describe your product..."></textarea>
         </div>
 
-        <!-- Dimensions: L, W, H inputs -->
+        <!-- Dimensions: L, W, H -->
         <div>
           <div class="field-label">Dimensions</div>
           <div class="dimensions-row">
             <input type="number" class="dim-input" placeholder="L" aria-label="Length" min="0" />
-            <input type="number" class="dim-input" placeholder="W" aria-label="Width" min="0" />
+            <input type="number" class="dim-input" placeholder="W" aria-label="Width"  min="0" />
             <input type="number" class="dim-input" placeholder="H" aria-label="Height" min="0" />
           </div>
         </div>
 
-        <!-- Material + Weight -->
+        <!-- Material + Weight side by side -->
         <div>
           <div class="mat-weight-row">
             <div>
               <div class="field-label">Material</div>
-              <input type="text" class="input-field" aria-label="Material" placeholder="" />
+              <input type="text" class="input-field" aria-label="Material" />
             </div>
             <div>
               <div class="field-label">Weight</div>
-              <input type="text" class="input-field" aria-label="Weight" placeholder="" />
+              <input type="text" class="input-field" aria-label="Weight" />
             </div>
           </div>
         </div>
@@ -230,18 +104,19 @@
         <!-- Estimated Process Time -->
         <div>
           <div class="field-label">Estimated Process Time</div>
-          <input type="text" class="input-field process-input" aria-label="Estimated process time" placeholder="" />
+          <input type="text" class="input-field process-input" aria-label="Estimated process time" />
         </div>
 
-        <!-- Save product button -->
-        <div style="margin-top: 8px;">
+        <!-- Save button: validation handled by add-product.js -->
+        <div style="margin-top:8px;">
           <button class="btn-primary" onclick="saveProduct()">Save Product</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- All JS logic lives in main.js -->
-  <script src="main.js"></script>
+  <!-- Shared JS first, then page-specific JS -->
+  <script src="js/main.js"></script>
+  <script src="js/add-product.js"></script>
 </body>
 </html>

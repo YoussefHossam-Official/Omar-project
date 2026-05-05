@@ -4,160 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Artiva – My Shop</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* ===========================
-       Page 4: My Shop (Settings View)
-       Layout: left sidebar + right content
-       =========================== */
-
-    .shop-layout {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      min-height: calc(100vh - 70px);
-    }
-
-    /* Left sidebar nav */
-    .sidebar {
-      padding: 36px 28px;
-      border-right: var(--border-width) solid var(--border-color);
-    }
-
-    .sidebar-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .sidebar-link {
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--navy);
-      text-decoration: none;
-      padding: 6px 0;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: var(--font-body);
-      text-align: left;
-    }
-
-    /* Active sidebar item: gold underline */
-    .sidebar-link.active {
-      color: var(--navy);
-      border-bottom: 3px solid var(--gold);
-      display: inline-block;
-    }
-
-    /* Right content panel */
-    .shop-content {
-      padding: 32px 36px;
-    }
-
-    /* Section cards (white with light border) */
-    .settings-card {
-      background: var(--white);
-      border: var(--border-width) solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 22px 24px;
-      margin-bottom: 18px;
-      position: relative;
-    }
-
-    .settings-card-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 14px;
-    }
-
-    /* Edit link bottom-right of each card */
-    .edit-link {
-      position: absolute;
-      bottom: 18px;
-      right: 20px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--navy);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* PFP + Cover Photo side by side card */
-    .photos-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    /* Circular PFP image */
-    .pfp-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      /*
-        Replace this src with the actual uploaded PFP image.
-        Using an Unsplash craft/tools image as placeholder.
-      */
-    }
-
-    /* Rectangular cover photo */
-    .cover-img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: var(--radius-md);
-      /*
-        Replace this src with actual uploaded cover photo.
-        Using an Unsplash autumn leaves image as placeholder.
-      */
-    }
-
-    /* Bio text */
-    .bio-text {
-      font-size: 14px;
-      color: var(--navy);
-      line-height: 1.6;
-      padding-bottom: 32px; /* room for edit link */
-    }
-
-    /* Category pills in settings (outlined style) */
-    .category-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding-bottom: 32px;
-    }
-
-    /* Country row at bottom */
-    .country-row {
-      font-size: 15px;
-      color: #666;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 0 4px;
-    }
-
-    .country-value {
-      font-weight: 700;
-      color: var(--navy);
-    }
-  </style>
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="style/styles.css" />
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="style/my-shop.css" />
 </head>
 <body>
   <div class="page-wrapper">
 
     <!-- Top navigation bar -->
     <nav class="top-nav">
-      <button class="nav-back" onclick="window.location.href='shop-setup.html'">
-        My Shop
-      </button>
-      <!-- Replace SVG with <img src="artiva-logo.png"> if logo file is available -->
+      <button class="nav-back" onclick="window.location.href='shop-setup.html'">My Shop</button>
+      <!-- Replace SVG with: <img src="assets/artiva-logo.png" width="32" alt="Artiva" /> -->
       <div class="nav-logo">
         <svg width="32" height="32" viewBox="0 0 50 50" fill="none">
           <path d="M25 8 C20 8 12 14 12 22 C12 30 18 36 25 40 C32 36 38 30 38 22 C38 14 30 8 25 8Z" fill="var(--gold)" opacity="0.9"/>
@@ -168,82 +26,75 @@
       </div>
     </nav>
 
-    <!-- Two-column layout: sidebar + content -->
+    <!-- Sidebar + Content layout -->
     <div class="shop-layout">
 
       <!-- Left sidebar navigation -->
       <aside class="sidebar">
         <nav class="sidebar-nav">
-          <a class="sidebar-link" onclick="window.location.href='#'">Overview</a>
+          <a class="sidebar-link">Overview</a>
           <a class="sidebar-link" onclick="window.location.href='add-product.html'">My Products</a>
           <a class="sidebar-link">Orders</a>
-          <!-- Active page: Shop Settings -->
+          <!-- Active page highlighted with gold underline -->
           <a class="sidebar-link active">Shop Settings</a>
         </nav>
       </aside>
 
-      <!-- Right content: shop settings panels -->
+      <!-- Right settings content -->
       <main class="shop-content">
 
-        <!-- PFP and Cover Photo side by side -->
+        <!-- PFP + Cover Photo cards -->
         <div class="photos-row">
-          <!-- PFP card -->
           <div class="settings-card">
             <div class="settings-card-title">PFP</div>
             <!--
-              PFP IMAGE: Replace src with real uploaded profile photo.
-              Unsplash craft tools image used as placeholder.
+              PFP IMAGE: Replace src with actual uploaded photo.
+              Placeholder: Unsplash craft tools photo.
               URL: https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=200&h=200&fit=crop
             -->
-            <img
-              class="pfp-img"
-              src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=200&h=200&fit=crop"
-              alt="Profile photo placeholder"
-            />
-            <!-- Edit button triggers file picker for new PFP -->
+            <img class="pfp-img"
+                 src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=200&h=200&fit=crop"
+                 alt="Profile photo" />
+            <!-- Edit button opens file picker; updatePFP() handles preview -->
             <div class="edit-link" onclick="document.getElementById('edit-pfp').click()">
               edit ✎
-              <input type="file" id="edit-pfp" accept="image/*" style="display:none" onchange="updatePFP(event)" />
+              <input type="file" id="edit-pfp" accept="image/*"
+                     style="display:none" onchange="updatePFP(event)" />
             </div>
           </div>
 
-          <!-- Cover Photo card -->
           <div class="settings-card">
             <div class="settings-card-title">Cover Photo</div>
             <!--
-              COVER PHOTO: Replace src with real uploaded cover photo.
-              Unsplash autumn leaves image used as placeholder.
+              COVER IMAGE: Replace src with actual uploaded cover photo.
+              Placeholder: Unsplash autumn leaves photo.
               URL: https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&h=200&fit=crop
             -->
-            <img
-              class="cover-img"
-              id="cover-img"
-              src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&h=200&fit=crop"
-              alt="Shop cover photo placeholder"
-            />
-            <!-- Edit button triggers file picker for new cover -->
+            <img class="cover-img" id="cover-img"
+                 src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&h=200&fit=crop"
+                 alt="Shop cover photo" />
+            <!-- Edit button opens file picker; updateCover() handles preview -->
             <div class="edit-link" onclick="document.getElementById('edit-cover').click()">
               edit ✎
-              <input type="file" id="edit-cover" accept="image/*" style="display:none" onchange="updateCover(event)" />
+              <input type="file" id="edit-cover" accept="image/*"
+                     style="display:none" onchange="updateCover(event)" />
             </div>
           </div>
         </div>
 
-        <!-- Bio card -->
+        <!-- Bio card: editBio() switches to textarea on click -->
         <div class="settings-card">
           <div class="settings-card-title">Bio</div>
           <div class="bio-text" id="bio-text">
             Transforming raw materials into pieces of art. Every item in my shop is handcrafted
             with love and care, designed to bring a touch of handmade magic into your daily life.
           </div>
-          <!-- Edit bio opens inline textarea -->
           <div class="edit-link" onclick="editBio()">edit ✎</div>
         </div>
 
-        <!-- Shop Category card -->
+        <!-- Shop Category pills (view mode) -->
         <div class="settings-card">
           <div class="settings-card-title">Shop Category</div>
-          <!-- Selected category pills (view mode) -->
           <div class="category-tags">
             <span class="tag-pill">Bags</span>
             <span class="tag-pill">Home Decor</span>
@@ -254,7 +105,7 @@
           <div class="edit-link">edit ✎</div>
         </div>
 
-        <!-- Country row -->
+        <!-- Country display row -->
         <div class="country-row">
           Country <span class="country-value">Egypt</span>
           <span style="cursor:pointer;">✎</span>
@@ -264,7 +115,8 @@
     </div>
   </div>
 
-  <!-- All JS logic lives in main.js -->
-  <script src="main.js"></script>
+  <!-- Shared JS first, then page-specific JS -->
+  <script src="js/main.js"></script>
+  <script src="js/my-shop.js"></script>
 </body>
 </html>

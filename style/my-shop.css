@@ -1,0 +1,133 @@
+/* ==========================================================
+   my-shop.css
+   Styles specific to the My Shop dashboard page.
+   ========================================================== */
+
+/* Two-column layout: sidebar + main content */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 70px);
+}
+
+/* Left sidebar */
+.sidebar {
+  padding: 36px 28px;
+  border-right: var(--border-width) solid var(--border-color);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-link {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 6px 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  text-align: left;
+}
+
+/* Active page: gold underline on sidebar link */
+.sidebar-link.active {
+  border-bottom: 3px solid var(--gold);
+  display: inline-block;
+}
+
+/* Right content area */
+.shop-content {
+  padding: 32px 36px;
+}
+
+/* White card with border for each settings section */
+.settings-card {
+  background: var(--white);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.settings-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+
+/* Edit link pinned bottom-right of each card */
+.edit-link {
+  position: absolute;
+  bottom: 18px;
+  right: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* PFP + Cover Photo side by side */
+.photos-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* Circular profile photo */
+.pfp-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Wide cover photo */
+.cover-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+/* Bio text block inside card */
+.bio-text {
+  font-size: 14px;
+  color: var(--navy);
+  line-height: 1.6;
+  padding-bottom: 32px;
+}
+
+/* Category pills inside settings view */
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 32px;
+}
+
+/* Country display row at bottom of settings */
+.country-row {
+  font-size: 15px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px;
+}
+
+.country-value {
+  font-weight: 700;
+  color: var(--navy);
+}

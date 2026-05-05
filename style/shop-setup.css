@@ -1,0 +1,73 @@
+/* ==========================================================
+   shop-setup.css
+   Styles specific to the Shop Set Up form page.
+   ========================================================== */
+
+/* Bold section headings */
+.form-section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+
+/* Spacing between form sections */
+.form-section {
+  margin-bottom: 10px;
+}
+
+/* Cover Photo + PFP upload areas side by side */
+.photo-uploads {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.photo-upload-item label {
+  font-size: 13px;
+  color: #888;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Square upload box for photos */
+.upload-box-square {
+  height: 160px;
+}
+
+/* Category pills flex wrap grid */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Shipping From + Average Process Time side by side */
+.logistics-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Small grey helper labels */
+.field-label {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+/* Submit button wrapper */
+.submit-area {
+  text-align: center;
+  padding: 28px 0 10px;
+}
+
+/* Decorative ghost logo watermark top-right */
+.ghost-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 130px;
+  opacity: 0.08;
+  pointer-events: none;
+}
