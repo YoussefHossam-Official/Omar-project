@@ -89,10 +89,47 @@
       <!-- Terms checkbox + CTA -->
       <div class="footer-area">
         <div class="terms-row">
-          <div class="terms-check">✓</div>
-          <span>I Have Read and Agreed to the <span class="terms-link">Terms</span></span>
+          <!-- Custom gold checkbox — checked state synced with modal "I Agree" button -->
+          <label class="custom-checkbox">
+            <input type="checkbox" id="terms-checkbox" onchange="toggleReady()" />
+            <span class="checkmark"></span>
+          </label>
+          <span>
+            I Have Read and Agreed to the
+            <!-- Clicking "Terms" opens the popup modal -->
+            <span class="terms-link" onclick="openTerms()">Terms</span>
+          </span>
         </div>
-        <button class="btn-primary" onclick="goToProfileData()">I'm Ready !</button>
+        <!-- Button is disabled until the checkbox is checked -->
+        <button class="btn-primary" id="ready-btn" onclick="goToProfileData()" disabled>
+          I'm Ready !
+        </button>
+      </div>
+
+      <!-- =============================================
+           Terms & Conditions Modal Popup
+           ============================================= -->
+      <div class="modal-overlay" id="terms-modal" onclick="closeTermsOnOverlay(event)">
+        <div class="modal-box">
+          <div class="modal-header">
+            <h2 class="modal-title">Terms</h2>
+            <button class="modal-close" onclick="closeTerms()" aria-label="Close">✕</button>
+          </div>
+          <div class="modal-body">
+
+            <!-- ============================================
+                 TERMS CONTENT — Replace with your real text
+                 ============================================ -->
+            <h3> I Acceptance of Terms</h3>
+
+            <!-- ============================================ -->
+
+          </div>
+          <div class="modal-footer">
+            <!-- Clicking I Agree checks the checkbox and closes the modal -->
+            <button class="btn-primary" onclick="agreeAndClose()">I Agree</button>
+          </div>
+        </div>
       </div>
 
     </div>

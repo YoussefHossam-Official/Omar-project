@@ -197,3 +197,155 @@ body {
   background: var(--gold);
   z-index: 1;
 }
+
+
+/* ----------------------------------------------------------
+   Custom Checkbox — gold brand style
+   ---------------------------------------------------------- */
+
+/* Hide the native checkbox, use custom .checkmark instead */
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Default unchecked state: empty circle with gold border */
+.checkmark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+/* Checked state: solid gold circle with white tick */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* White tick icon inside checked circle */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  content: '✓';
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Disabled button style until checkbox is checked */
+#ready-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ----------------------------------------------------------
+   Terms & Conditions Modal
+   ---------------------------------------------------------- */
+
+/* Dark semi-transparent backdrop covering the full screen */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Show modal when active class is added by JS */
+.modal-overlay.active {
+  display: flex;
+}
+
+/* White modal box */
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 540px;
+  max-width: 92vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Modal top bar: title + close button */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+/* X close button top-right */
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #888;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.modal-close:hover {
+  background: var(--card-bg);
+  color: var(--navy);
+}
+
+/* Scrollable content area */
+.modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  line-height: 1.7;
+  color: var(--navy);
+}
+
+.modal-body h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 16px 0 6px;
+  color: var(--navy);
+}
+
+.modal-body h3:first-child {
+  margin-top: 0;
+}
+
+.modal-body p {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+/* Modal bottom: I Agree button */
+.modal-footer {
+  padding: 16px 24px 20px;
+  border-top: var(--border-width) solid var(--border-color);
+  text-align: center;
+}
